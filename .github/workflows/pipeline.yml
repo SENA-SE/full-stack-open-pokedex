@@ -36,3 +36,16 @@ jobs:
           command: npm run test:e2e
           start: npm start
           wait-on: 'http://localhost:8080'
+
+  tag_release:
+    needs: [deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      // steps here
+          steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.64.0
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: 'patch' # Set default bump to patch
