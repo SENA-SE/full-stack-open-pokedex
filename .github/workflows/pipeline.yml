@@ -1,4 +1,4 @@
-name: Linting Workflow
+name: Deployment Pipeline
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  linting:
+  deployment_pipeline:
     runs-on: ubuntu-20.04
     
     steps:
